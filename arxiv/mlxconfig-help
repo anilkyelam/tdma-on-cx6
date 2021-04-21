@@ -1,0 +1,1203 @@
+
+List of configurations the device 0000:3b:00.0 may support:
+		MEMIC CONF:
+                    MEMIC_BAR_SIZE=<NUM>                    The amount of BAR size assigned for MEMIC. The size in 
+                                                            bytes is memic_size_limit*2^log_memic_bar_size.
+                    MEMIC_SIZE_LIMIT=<DISABLED|_1024KB|_256KB|_512KB>The maximum amount of internal device memory that can 
+                                                            be consumed by the MEMIC application.
+                                                            0x0: DISABLED
+                                                            0x1: _256KB
+                                                            0x2: _512KB
+                                                            0x3: _1024KB
+		HOST CHAINING CONF:
+                    HOST_CHAINING_CACHE_DISABLE=<False|True>When TRUE, host chaining data is not cached on the device.
+                    HOST_CHAINING_DESCRIPTORS=<NUM>         Log(base 2) of the number of packets descriptors that 
+                                                            should be allocated by the host for host chaining for a given 
+                                                            IEEE802.1p priority i.
+                                                            0 means that no descriptors are allocated for this priority 
+                                                            and traffic with this priority will be dropped.
+                    HOST_CHAINING_MODE=<BASIC|DISABLED>     Enable and select host-chaining mode.
+                                                            0x0: DISABLED
+                                                            0x1: BASIC
+                                                            other values are reserved
+                    HOST_CHAINING_TOTAL_BUFFER_SIZE=<NUM>   Log(base 2) of the buffer size (in bytes) allocated for host 
+                                                            chaining for a given IEEE802.1p priority i.
+                                                            0 means no buffer for this priority and traffic with this pri
+                                                            ority will be dropped.
+		FPGA CONF:
+                    FPGA_AUTO_RELOAD=<False|True>           When set, the FPGA bitstream is reloaded from flash as 
+                                                            part of the ConnectX boot sequence.
+		INTERNAL CPU CONF:
+                    INTERNAL_CPU_MODEL=<EMBEDDED_CPU|SEPERATED_HOST>Select the model for the Internal CPU
+                                                            0x0: SEPERATED_HOST - Supported only when NV_INTER
+                                                            NAL_CPU_CAP.separate_host_model_supported==1.
+                                                            0x1: EMBEDDED_CPU - Supported only when NV_INTER
+                                                            NAL_CPU_CAP.embedded_cpu_model_supported==1.
+                                                            other values are reserved
+                                                            This NVCONFIG parameter can only be configured from the 
+                                                            embedded CPU.
+		FLEX PARSER CONF:
+                    FLEX_IPV4_OVER_VXLAN_PORT=<NUM>         The UDP port for incoming IPoVxLAN traffic (non-stan
+                                                            dard).
+                                                            When set, also affects flex_vxlan_gpe_supported when 
+                                                            enabled on same profile.
+                                                            
+                    FLEX_PARSER_PROFILE_ENABLE=<NUM>        Indicates which flex parser profile to enable. Each profile 
+                                                            supports a set of protocols. The support indication and the 
+                                                            set of protocols supported by profile 'x' reported in NC_
+                                                            FLEX_PARSER_CAP.flex_parser_profile_x_supported.
+                    PROG_PARSE_GRAPH=<False|True>           When TRUE, the device parse graph may be dynamically 
+                                                            configured. The amount of programmable resources is 
+                                                            reduced according to the amount of protocols already sup
+                                                            ported by FLEX_PARSER_PROFILE_ENABLE.
+		ROCE 1 5 CONF:
+                    ROCE_NEXT_PROTOCOL=<NUM>                The next protocol value set in the IPv4/IPv6 packets 
+                                                            for RoCE v1.5.
+		INTERNAL HAIRPIN CONF:
+                    ESWITCH_HAIRPIN_DESCRIPTORS=<NUM>       Log(base 2) of the number of packets descriptors allocated 
+                                                            internally for hairpin for a given IEEE802.1p priority i.
+                                                            0 means that no descriptors are allocated for this priority 
+                                                            and traffic with this priority will be dropped.
+                    ESWITCH_HAIRPIN_TOT_BUFFER_SIZE=<NUM>   Log(base 2) of the buffer size (in bytes) allocated internally 
+                                                            for hairpin for a given IEEE802.1p priority i.
+                                                            0 means no buffer for this priority and traffic with this pri
+                                                            ority will be dropped.
+		GLOBAL PCI CONF:
+                    FPP_EN=<False|True>                     When this bit is cleared, the device exposes a single PCI 
+                                                            function for both ports. When set, the device exposes one or 
+                                                            more PCI functions for each port (this is the only mode sup
+                                                            ported by ConnectX-4 devices).
+                    HIDE_PORT2_PF=<False|True>              When TRUE, the device will not advertise the PFs associ
+                                                            ated with port 2, except for the Embedded CPU (ECPF) if 
+                                                            exists. This configuration is available only when NV_PCI_
+                                                            CONF.ADVANCED_PCI_SETTINGS is TRUE.
+                    NON_PREFETCHABLE_PF_BAR=<False|True>    When set, the PF BAR prefetchable bit is cleared.
+                                                            Note: PCI switches and operation systems have dedicated 
+                                                            quotas for non-prefetchable memory, hence, you may need 
+                                                            to decrease log_pf_uar_bar_size to enable this feature.
+                    NUM_OF_VFS=<NUM>                        The total number of Virtual Functions (VFs) that can be sup
+                                                            ported, for each PF.
+                    NUM_PF_MSIX=<NUM>                       Number of MSI-X vectors and EQs per PF.
+                    NUM_PF_MSIX_VALID=<False|True>          When set, the num_pf_msix field is valid. 
+                                                            When cleared, the number of PF MSI-X is defined by 
+                                                            PER_PF_NUM_MSIX
+                    NUM_VF_MSIX=<NUM>                       Number of MSI-X vectors and EQs per VF.
+                    PARTIAL_WRITE_CACHE_MODE=<ADDRESS_BASED|DEVICE_DEFAULT|DISABLED|FUNCTION_BASED>Specifies the mode of operation for PCI write cache, for 
+                                                            partial cacheline writes:
+                                                            0x0: DEVICE_DEFAULT - device default configuration
+                                                            0x1: DISABLED
+                                                            0x2: FUNCTION_BASED
+                                                            0x3: ADDRESS_BASED
+                                                            other values are reserved
+                    PER_PF_NUM_MSIX=<False|True>            When TRUE, the MSI-X configuration is defined by NUM_P
+                                                            F_MSIX for each PF individually. In case they are not 
+                                                            defined for a PF, device defaults are used.
+                                                            When FALSE, the MSI-X configuration is defined by device 
+                                                            defaults
+                                                            Valid only when NUM_PF_MSIX_VALID is set to FALSE.
+                    PER_PF_NUM_SF=<False|True>              When TRUE, the SFs configuration is defined by TOTAL_SF 
+                                                            and SF_BAR_SIZE for each PF individually. In case they are 
+                                                            not defined for a PF, device defaults are used. 
+                                                            When FALSE, the SFs configuration is defined by device 
+                                                            defaults.
+                                                            Valid only when PF_BAR2_ENABLE is set to FALSE.
+                    PER_PF_NUM_VF_MSIX=<False|True>         When TRUE, the VF MSI-X configuration is defined by 
+                                                            NUM_VF_MSIX for each PF individually. In case they are not 
+                                                            defined for a PF, device defaults are used for that PF.
+                                                            When FALSE, the MSI-X configuration is defined by 
+                                                            NUM_VF_MSIX for all PFs
+                    PF_BAR2_ENABLE=<False|True>             When TRUE, BAR2 is exposed on all external host PFs (but 
+                                                            not on the embedded ARM PFs/ECPFs). The BAR2 size is 
+                                                            defined by the log_pf_bar2_size.
+                                                            When FALSE, the SFs and BAR2 configurations are defined 
+                                                            by PER_PF_NUM_SF
+                    PF_BAR2_SIZE=<NUM>                      Log (base 2) of the size of a PF's BAR2 size, given in MB.
+                    PF_LOG_BAR_SIZE=<NUM>                   Log 2 of the size of a PF"s UAR BAR in MBs.
+                    SRIOV_EN=<False|True>                   Enable Single-Root I/O Virtualization (SR-IOV)
+                    STRICT_VF_MSIX_NUM=<False|True>         When set to TRUE, num_vf_msix defines a strict number 
+                                                            (no calculation and roundup).
+                    VF_LOG_BAR_SIZE=<NUM>                   Log 2 of the size of a VF"s UAR BAR in MBs.
+                    VF_NODNIC_ENABLE=<False|True>           When set to TRUE, VF has VSC Gateway exposed through 
+                                                            PCI, and may access the NODNIC initialization segment
+                    VF_VPD_ENABLE=<False|True>              When set, VPD Capability is exposed to Virtual Functions.
+		TPT CONF:
+                    INT_LOG_MAX_PAYLOAD_SIZE=<AUTOMATIC|_4KB>Sets the PCIe burst size for the NIC internal Transla
+                                                            tion and Protection (TPT) mechanism.
+                                                            0x0: AUTOMATIC
+                                                            0xC: _4KB
+		GLOBAL PCI CONF 2:
+                    MAX_ACC_OUT_READ=<NUM>                  Maximum accumulated outstanding Read requests bytes. 
+                                                            Value is given in units of 1K bytes.
+                                                            The limit is applied for each PCI bus link individually.
+                                                            Value 0x0 indicates the use of device defaults.
+                                                            Configuration is available only when NV_PCI_
+                                                            CONF.ADVANCED_PCI_SETTINGS is TRUE.
+                    PCIE_CREDIT_TOKEN_TIMEOUT=<NUM>         PCIe credit timeout. In case a pending transaction has no 
+                                                            credits longer than this timeout value, buffered transac
+                                                            tions will be dropped. Value is given in milliseconds in the 
+                                                            range of 10 to 4,000. 
+                                                            Value 0x0 indicates the device will adjust the timeout auto
+                                                            matically.
+                                                            Value 0xffff disables the feature.
+                                                            
+		PCI SWITCH EVB CONF:
+                    PCI_SW_LANES_MAPPING=<BINARY>           Evaluated from the LSB, each bit represents the 
+                                                            mapping of two PCI lanes to independent PCI buses 
+                                                            where a value of zero indicates that the correspond
+                                                            ing lanes are the first lanes of a new bus, and a value 
+                                                            of 1 indicates that the corresponding lanes belongs 
+                                                            to the same bus as the previous lanes.
+                                                            Examples:
+                                                            11111110b => all 16 lanes are mapped to the host. 
+                                                            The actual bus width is learned dynamically so it may 
+                                                            also be 8 or 4 lanes.
+                                                            00000000b => The host bus width is up to 2 lanes and 
+                                                            there are additional 7 independent buses. 
+                                                            11101110b => The host bus is up to 8 lanes and there 
+                                                            is an addition bus of up to 8 lanes.
+                    PCI_SW_LANES_REMAPPING_EN=<False|True>  When set allows remapping of the PCI switch lanes 
+                                                            to slots according to the PCI_SW_LANES_MAPPING 
+                                                            parameter.
+		POWER CONF:
+                    ACCURATE_TX_SCHEDULER=<False|True>      When TRUE, the device will optimize the transmit sched
+                                                            uler for high accuracy.
+                                                            may hurt performance
+                                                            When False, the device defaults will apply for the sched
+                                                            uler.
+                    ADVANCED_POWER_SETTINGS=<False|True>    Show/hide additional power settings parameters.
+                                                            Warning: Wrong power settings may cause physical dam
+                                                            age.
+                                                            
+                    DISABLE_SLOT_POWER_LIMITER=<False|True> When cleared, the device is not allowed to consume more 
+                                                            than 25W from the PCIe power rails, unless a PCI slot 
+                                                            power limit message statesthat a new power limit is 
+                                                            received.
+                                                            When set, the slot power limiter is disabled, and the 
+                                                            device is allowed to consume more than 25W from the 
+                                                            PCIe power rails.
+                                                            Note: if the power limiter is active and there is not enough 
+                                                            power, the device will shut down the network modules.
+                                                            
+                    PARTIAL_RESET_EN=<False|True>           When set, the partial reset flow is enabled. This reset 
+                                                            skips on resetting GPIOs, loading PLL new parameters 
+                                                            and performing self-tests. Partial reset will be triggered 
+                                                            only if no exceptions requiring full reset were detected 
+                                                            (for example, if any of the boot record"s parameter had 
+                                                            changed)
+                    RESET_WITH_HOST_ON_ERRORS=<False|True>  When set, host reset will trigger a device reset, if the 
+                                                            device has previously detected fatal errors.
+                                                            
+                    SW_RECOVERY_ON_ERRORS=<False|True>      When set, SW will be instructed to perform a recovery 
+                                                            flow when health buffer reports an error. 
+                                                            
+		HOST SYNC CONF:
+                    ICMD_SEM_LOCK_THRESHOLD=<NUM>           Host will be expelled from VSEC Gateway usage if it 
+                                                            holds the ICMD Global Semaphore for a period lon
+                                                            ger than this threshold. Value is given in units of 
+                                                            0.1sec
+                                                            Value 0xFFFF indicates this threshold is infinite (dis
+                                                            abled)
+                    IDLE_ICMD_SEM_LOCK_THRESHOLD=<NUM>      Host will be expelled from VSEC Gateway usage if it 
+                                                            holds the ICMD Global Semaphore, without issuing 
+                                                            any ICMD, for a period longer than this threshold. 
+                                                            Value is given in units of 0.1sec
+                                                            Value 0xFFFF indicates this threshold is infinite (dis
+                                                            abled)
+                    VSEC_EXPULSION_DURATION=<NUM>           Host VSEC Gateway expulsion will persist for this 
+                                                            period. Value is given in units of 0.1sec
+		EMULATION NVME CONF:
+                    NVME_EMULATION_CLASS_CODE=<NUM>         PCIe class_code register for the NVME emulated 
+                                                            device
+                    NVME_EMULATION_DEVICE_ID=<NUM>          PCIe device_id config register for the NVME emu
+                                                            lated device.
+                    NVME_EMULATION_ENABLE=<False|True>      When set to TRUE, NVME device emulation is 
+                                                            enabled.
+                    NVME_EMULATION_NUM_MSIX=<NUM>           Number of MSI-X Vectors assigned for each PF/VF of 
+                                                            the NVME emulation device. Value 0x0 will use device 
+                                                            defaults
+                    NVME_EMULATION_NUM_PF=<NUM>             Total number of PCIe functions (PFs) exposed by the 
+                                                            device for NVME emulation.
+                    NVME_EMULATION_NUM_VF=<NUM>             The total number of Virtual Functions (VFs) that can 
+                                                            be supported for each PF.
+                    NVME_EMULATION_NUM_VF_MSIX=<NUM>        Number of MSI-X vectors assigned to each VF asso
+                                                            ciated with this type of PF.
+                    NVME_EMULATION_REVISION_ID=<NUM>        PCIe revision_id register for the NVME emulated 
+                                                            device
+                    NVME_EMULATION_SUBSYSTEM_ID=<NUM>       PCIe subsystem_id register for the NVME emulated 
+                                                            device
+                    NVME_EMULATION_SUBSYSTEM_VENDOR_ID=<NUM>PCIe subsystem_vendor_id register for the NVME 
+                                                            emulated device
+                    NVME_EMULATION_VENDOR_ID=<NUM>          PCIe vendor_id config register for the NVME emu
+                                                            lated device.
+		EMULATION PCI SWITCH CONF:
+                    PCI_SWITCH_EMULATION_ENABLE=<False|True>When TRUE, the device will expose a PCI switch. All 
+                                                            PF configurations are applied on the switch down
+                                                            stream ports. On such case, each PF will have a dif
+                                                            ferent PCI device on the emulated switch. This 
+                                                            configuration allows to expose 0 network PFs toward 
+                                                            host
+                    PCI_SWITCH_EMULATION_NUM_PORT=<NUM>     Number of emulated switch ports. Each port can 
+                                                            hold a single PCI device (emulated or not).
+		EMULATION VIRTIO NET CONF:
+                    VIRTIO_NET_EMULATION_CLASS_CODE=<NUM>   PCIe class_code register for the VIRTIO_NET emu
+                                                            lated device
+                    VIRTIO_NET_EMULATION_DEVICE_ID=<NUM>    PCIe device_id config register for the VIRTIO_NET 
+                                                            emulated device.
+                    VIRTIO_NET_EMULATION_ENABLE=<False|True>When set to TRUE, VIRTIO_NET device emulation is 
+                                                            enabled.
+                    VIRTIO_NET_EMULATION_NUM_MSIX=<NUM>     Number of MSI-X Vectors assigned for each PF/VF of 
+                                                            the VIRTIO_NET emulation device. Value 0x0 will use 
+                                                            device defaults
+                    VIRTIO_NET_EMULATION_NUM_PF=<NUM>       Total number of PCIe functions (PFs) exposed by the 
+                                                            device for VIRTIO_NET emulation.
+                    VIRTIO_NET_EMULATION_NUM_VF=<NUM>       The total number of Virtual Functions (VFs) that can 
+                                                            be supported for each PF.
+                    VIRTIO_NET_EMULATION_NUM_VF_MSIX=<NUM>  Number of MSI-X vectors assigned to each VF asso
+                                                            ciated with this type of PF.
+                    VIRTIO_NET_EMULATION_REVISION_ID=<NUM>  PCIe revision_id register for the VIRTIO_NET emu
+                                                            lated device
+                    VIRTIO_NET_EMULATION_SUBSYSTEM_ID=<NUM> PCIe subsystem_id register for the VIRTIO_NET 
+                                                            emulated device
+                    VIRTIO_NET_EMULATION_VENDOR_ID=<NUM>    PCIe vendor_id config register for the VIRTIO_NET 
+                                                            emulated device.
+                    VIRTIO_NET_EMU_SUBSYSTEM_VENDOR_ID=<NUM>PCIe subsystem_vendor_id register for the VIR
+                                                            TIO_NET emulated device
+		EMULATION VIRTIO BLK CONF:
+                    VIRTIO_BLK_EMULATION_CLASS_CODE=<NUM>   PCIe class_code register for the VIRTIO_BLK emu
+                                                            lated device
+                    VIRTIO_BLK_EMULATION_DEVICE_ID=<NUM>    PCIe device_id config register for the VIRTIO_BLK 
+                                                            emulated device.
+                    VIRTIO_BLK_EMULATION_ENABLE=<False|True>When set to TRUE, VIRTIO_BLK device emulation is 
+                                                            enabled.
+                    VIRTIO_BLK_EMULATION_NUM_MSIX=<NUM>     Number of MSI-X Vectors assigned for each PF/VF of 
+                                                            the VIRTIO_BLK emulation device. Value 0x0 will use 
+                                                            device defaults
+                    VIRTIO_BLK_EMULATION_NUM_PF=<NUM>       Total number of PCIe functions (PFs) exposed by the 
+                                                            device for VIRTIO_BLK emulation.
+                    VIRTIO_BLK_EMULATION_NUM_VF=<NUM>       The total number of Virtual Functions (VFs) that can 
+                                                            be supported for each PF.
+                    VIRTIO_BLK_EMULATION_NUM_VF_MSIX=<NUM>  Number of MSI-X vectors assigned to each VF asso
+                                                            ciated with this type of PF.
+                    VIRTIO_BLK_EMULATION_REVISION_ID=<NUM>  PCIe revision_id register for the VIRTIO_BLK emu
+                                                            lated device
+                    VIRTIO_BLK_EMULATION_SUBSYSTEM_ID=<NUM> PCIe subsystem_id register for the VIRTIO_BLK 
+                                                            emulated device
+                    VIRTIO_BLK_EMULATION_VENDOR_ID=<NUM>    PCIe vendor_id config register for the VIRTIO_BLK 
+                                                            emulated device.
+                    VIRTIO_BLK_EMU_SUBSYSTEM_VENDOR_ID=<NUM>PCIe subsystem_vendor_id register for the VIR
+                                                            TIO_BLK emulated device
+		GLOBAL PCI CONF 3:
+                    PCI_BUS0_RESTRICT=<False|True>          When TRUE, PCI bus width, speed and ASPM will be 
+                                                            restricted according to PCI_BUS_RESTRICT_WIDTH, 
+                                                            PCI_BUS_RESTRICT_SPEED, PCI_BUS_RESTRICT_ASPM 
+                                                            respectively
+                    PCI_BUS0_RESTRICT_ASPM=<False|True>     When FALSE, PCI bus will not have ASPM enabled.
+                                                            Valid when PCI_BUS_RESTRICT is TRUE.
+                    PCI_BUS0_RESTRICT_SPEED=<PCI_GEN_1|PCI_GEN_2|PCI_GEN_3|PCI_GEN_4|PCI_GEN_5>Restricts the PCI speed to be smaller or equal to:
+                                                            0x0: PCI_GEN_1
+                                                            0x1: PCI_GEN_2
+                                                            0x2: PCI_GEN_3
+                                                            0x3: PCI_GEN_4
+                                                            0x4: PCI_GEN_5
+                                                            Valid when PCI_BUS_RESTRICT is TRUE.
+                    PCI_BUS0_RESTRICT_WIDTH=<PCI_X1|PCI_X16|PCI_X2|PCI_X4|PCI_X8>Restricts the PCI bus width to be smaller or equal to:
+                                                            0x0: PCI_X1
+                                                            0x1: PCI_X2
+                                                            0x2: PCI_X4
+                                                            0x3: PCI_X8
+                                                            0x4: PCI_X16
+                                                            Valid when PCI_BUS_RESTRICT is TRUE.
+                    PCI_BUS1_RESTRICT=<False|True>          See PCI_BUS0_RESTRICT
+                    PCI_BUS1_RESTRICT_ASPM=<False|True>     See PCI_BUS0_RESTRICT_ASPM
+                    PCI_BUS1_RESTRICT_SPEED=<PCI_GEN_1|PCI_GEN_2|PCI_GEN_3|PCI_GEN_4|PCI_GEN_5>See PCI_BUS0_RESTRICT_SPEED
+                                                            0x0: PCI_GEN_1
+                                                            0x1: PCI_GEN_2
+                                                            0x2: PCI_GEN_3
+                                                            0x3: PCI_GEN_4
+                                                            0x4: PCI_GEN_5
+                    PCI_BUS1_RESTRICT_WIDTH=<PCI_X1|PCI_X16|PCI_X2|PCI_X4|PCI_X8>See PCI_BUS0_RESTRICT_WIDTH
+                                                            0x0: PCI_X1
+                                                            0x1: PCI_X2
+                                                            0x2: PCI_X4
+                                                            0x3: PCI_X8
+                                                            0x4: PCI_X16
+                    PCI_BUS2_RESTRICT=<False|True>          See PCI_BUS0_RESTRICT
+                    PCI_BUS2_RESTRICT_ASPM=<False|True>     See PCI_BUS0_RESTRICT_ASPM
+                    PCI_BUS2_RESTRICT_SPEED=<PCI_GEN_1|PCI_GEN_2|PCI_GEN_3|PCI_GEN_4|PCI_GEN_5>See PCI_BUS0_RESTRICT_SPEED
+                                                            0x0: PCI_GEN_1
+                                                            0x1: PCI_GEN_2
+                                                            0x2: PCI_GEN_3
+                                                            0x3: PCI_GEN_4
+                                                            0x4: PCI_GEN_5
+                    PCI_BUS2_RESTRICT_WIDTH=<PCI_X1|PCI_X16|PCI_X2|PCI_X4|PCI_X8>See PCI_BUS0_RESTRICT_WIDTH
+                                                            0x0: PCI_X1
+                                                            0x1: PCI_X2
+                                                            0x2: PCI_X4
+                                                            0x3: PCI_X8
+                                                            0x4: PCI_X16
+                    PCI_BUS3_RESTRICT=<False|True>          See PCI_BUS0_RESTRICT
+                    PCI_BUS3_RESTRICT_ASPM=<False|True>     See PCI_BUS0_RESTRICT_ASPM
+                    PCI_BUS3_RESTRICT_SPEED=<PCI_GEN_1|PCI_GEN_2|PCI_GEN_3|PCI_GEN_4|PCI_GEN_5>See PCI_BUS0_RESTRICT_SPEED
+                                                            0x0: PCI_GEN_1
+                                                            0x1: PCI_GEN_2
+                                                            0x2: PCI_GEN_3
+                                                            0x3: PCI_GEN_4
+                                                            0x4: PCI_GEN_5
+                    PCI_BUS3_RESTRICT_WIDTH=<PCI_X1|PCI_X16|PCI_X2|PCI_X4|PCI_X8>See PCI_BUS0_RESTRICT_WIDTH
+                                                            0x0: PCI_X1
+                                                            0x1: PCI_X2
+                                                            0x2: PCI_X4
+                                                            0x3: PCI_X8
+                                                            0x4: PCI_X16
+                    PCI_BUS4_RESTRICT=<False|True>          See PCI_BUS0_RESTRICT
+                    PCI_BUS4_RESTRICT_ASPM=<False|True>     See PCI_BUS0_RESTRICT_ASPM
+                    PCI_BUS4_RESTRICT_SPEED=<PCI_GEN_1|PCI_GEN_2|PCI_GEN_3|PCI_GEN_4|PCI_GEN_5>See PCI_BUS0_RESTRICT_SPEED
+                                                            0x0: PCI_GEN_1
+                                                            0x1: PCI_GEN_2
+                                                            0x2: PCI_GEN_3
+                                                            0x3: PCI_GEN_4
+                                                            0x4: PCI_GEN_5
+                    PCI_BUS4_RESTRICT_WIDTH=<PCI_X1|PCI_X16|PCI_X2|PCI_X4|PCI_X8>See PCI_BUS0_RESTRICT_WIDTH
+                                                            0x0: PCI_X1
+                                                            0x1: PCI_X2
+                                                            0x2: PCI_X4
+                                                            0x3: PCI_X8
+                                                            0x4: PCI_X16
+                    PCI_BUS5_RESTRICT=<False|True>          See PCI_BUS0_RESTRICT
+                    PCI_BUS5_RESTRICT_ASPM=<False|True>     See PCI_BUS0_RESTRICT_ASPM
+                    PCI_BUS5_RESTRICT_SPEED=<PCI_GEN_1|PCI_GEN_2|PCI_GEN_3|PCI_GEN_4|PCI_GEN_5>See PCI_BUS0_RESTRICT_SPEED
+                                                            0x0: PCI_GEN_1
+                                                            0x1: PCI_GEN_2
+                                                            0x2: PCI_GEN_3
+                                                            0x3: PCI_GEN_4
+                                                            0x4: PCI_GEN_5
+                    PCI_BUS5_RESTRICT_WIDTH=<PCI_X1|PCI_X16|PCI_X2|PCI_X4|PCI_X8>See PCI_BUS0_RESTRICT_WIDTH
+                                                            0x0: PCI_X1
+                                                            0x1: PCI_X2
+                                                            0x2: PCI_X4
+                                                            0x3: PCI_X8
+                                                            0x4: PCI_X16
+                    PCI_BUS6_RESTRICT=<False|True>          See PCI_BUS0_RESTRICT
+                    PCI_BUS6_RESTRICT_ASPM=<False|True>     See PCI_BUS0_RESTRICT_ASPM
+                    PCI_BUS6_RESTRICT_SPEED=<PCI_GEN_1|PCI_GEN_2|PCI_GEN_3|PCI_GEN_4|PCI_GEN_5>See PCI_BUS0_RESTRICT_SPEED
+                                                            0x0: PCI_GEN_1
+                                                            0x1: PCI_GEN_2
+                                                            0x2: PCI_GEN_3
+                                                            0x3: PCI_GEN_4
+                                                            0x4: PCI_GEN_5
+                    PCI_BUS6_RESTRICT_WIDTH=<PCI_X1|PCI_X16|PCI_X2|PCI_X4|PCI_X8>See PCI_BUS0_RESTRICT_WIDTH
+                                                            0x0: PCI_X1
+                                                            0x1: PCI_X2
+                                                            0x2: PCI_X4
+                                                            0x3: PCI_X8
+                                                            0x4: PCI_X16
+                    PCI_BUS7_RESTRICT=<False|True>          See PCI_BUS0_RESTRICT
+                    PCI_BUS7_RESTRICT_ASPM=<False|True>     See PCI_BUS0_RESTRICT_ASPM
+                    PCI_BUS7_RESTRICT_SPEED=<PCI_GEN_1|PCI_GEN_2|PCI_GEN_3|PCI_GEN_4|PCI_GEN_5>See PCI_BUS0_RESTRICT_SPEED
+                                                            0x0: PCI_GEN_1
+                                                            0x1: PCI_GEN_2
+                                                            0x2: PCI_GEN_3
+                                                            0x3: PCI_GEN_4
+                                                            0x4: PCI_GEN_5
+                    PCI_BUS7_RESTRICT_WIDTH=<PCI_X1|PCI_X16|PCI_X2|PCI_X4|PCI_X8>See PCI_BUS0_RESTRICT_WIDTH
+                                                            0x0: PCI_X1
+                                                            0x1: PCI_X2
+                                                            0x2: PCI_X4
+                                                            0x3: PCI_X8
+                                                            0x4: PCI_X16
+		SW OFFLOAD CONF:
+                    CQE_COMPRESSION=<AGGRESSIVE|BALANCED>   Configure which algorithm should be used by the NIC 
+                                                            in order to decide when to activate CQE compression 
+                                                            based on PCIe bus condition. Note that the driver can 
+                                                            enable compression on a per CQE basis
+                                                            0x0: BALANCED
+                                                            0x1: AGGRESSIVE
+                    ESWITCH_IPV4_TTL_MODIFY_ENABLE=<False|True>When TRUE, the device will supports e-switch rules 
+                                                            modifying TTL of packets from the uplink to a vport.
+                    IP_OVER_VXLAN_EN=<False|True>           This parameter is only supported if NV_SW_OFF
+                                                            LOAD_CAP.ip_over_vxlan_supported is set.
+                    IP_OVER_VXLAN_PORT=<NUM>                This parameter is only supported if NV_SW_OFF
+                                                            LOAD_CAP.ip_over_vxlan_supported is set.
+                    LOG_MAX_OUTSTANDING_WQE=<NUM>           Log2 of the maximal amount of outstanding (uncom
+                                                            pleted) WQEs a single Transmit Work Queue may 
+                                                            hold. Additional WQEs will be delayed until some of 
+                                                            the outstanding WQEs are completed.
+                                                            Value 0x0 indicates device default.
+                                                            Value 0x1F indicates device maximal supported value
+                    LOG_TX_PSN_WINDOW=<NUM>                 Log2 of the transmission PSN window for QPs with 
+                                                            Connected Transport Service (RC, DC, XRC).
+                                                            Value 0x0 indicates device defaults
+                                                            Value 0x3F indicates device maximal supported value
+                                                            Values exceeding the device capabilities will be con
+                                                            sidered as the device maximal supported value as 
+                                                            well.
+                    LRO_LOG_TIMEOUT0=<NUM>                  Log2 of Large Receive Offload (LRO) timeout #0, in 
+                                                            microseconds. Driver can select one of the 4 config
+                                                            ured LRO timeouts on a per Qp basis in run-time 
+                                                            (lro_timeout_period_usecs field of the TIR context)
+                    LRO_LOG_TIMEOUT1=<NUM>                  Log2 of Large Receive Offload (LRO) timeout #1, in 
+                                                            microseconds. Driver can select one of the 4 config
+                                                            ured LRO timeouts on a per Qp basis in run-time 
+                                                            (lro_timeout_period_usecs field of the TIR context)
+                    LRO_LOG_TIMEOUT2=<NUM>                  Log2 of Large Receive Offload (LRO) timeout #2, in 
+                                                            microseconds. Driver can select one of the 4 config
+                                                            ured LRO timeouts on a per Qp basis in run-time 
+                                                            (lro_timeout_period_usecs field of the TIR context)
+                    LRO_LOG_TIMEOUT3=<NUM>                  Log2 of Large Receive Offload (LRO) timeout #3, in 
+                                                            microseconds. Driver can select one of the 4 config
+                                                            ured LRO timeouts on a per Qp basis in run-time 
+                                                            (lro_timeout_period_usecs field of the TIR context)
+                    MKEY_BY_NAME=<False|True>               When TRUE, the device supports allocating MKey 
+                                                            numbers by the device driver
+                    PCI_ATOMIC_MODE=<PCI_ATOMICS_ENABLED_EXT_ATOMICS_DISABLED|PCI_ATOMICS_ENABLED_EXT_ATOMICS_ENABLED|PCI_ATOMICS_ENABLED_EXT_ATOMICS_ENABLED_NONCOHERENT|PCI_ATOMICS_ENABLED_EXT_ATOMICS_ENABLED_SERIALIZED|PCI_ATOMIC_DISABLED_EXT_ATOMIC_ENABLED>PCI Atomic mode.
+                                                            0x0: PCI_ATOMIC_DISABLED_EXT_ATOMIC_EN
+                                                            ABLED
+                                                            0x1: PCI_ATOMICS_ENABLED_EXT_ATOMICS_EN
+                                                            ABLED_SERIALIZED - Atomic serialization will guar
+                                                            antee atomicity for multiple accesses to the same 
+                                                            address
+                                                            0x2: PCI_ATOMICS_ENABLED_EXT_ATOMICS_DIS
+                                                            ABLED
+                                                            0x3: PCI_ATOMICS_ENABLED_EXT_ATOMICS_EN
+                                                            ABLED_NONCOHERENT 
+                                                            0x4: PCI_ATOMICS_ENABLED_EXT_ATOMICS_EN
+                                                            ABLED
+                                                            
+                    PRIO_TAG_REQUIRED_EN=<False|True>       When set to TRUE, the system requires to always 
+                                                            have prio tag on the network. SW of e-Switch man
+                                                            ager should set the required flow table rules to 
+                                                            ensure that. This field is supported only when 
+                                                            NV_SW_OFFLOAD_CAP.prio_tag_required==1 and is 
+                                                            reported in HCA_CAP.prio_tag_required.
+                    RDMA_SELECTIVE_REPEAT_EN=<False|True>   When TRUE, Selective Repeat for RDMA QPs is sup
+                                                            ported.
+                    REAL_TIME_CLOCK_ENABLE=<False|True>     When enabled, real time clock is enabled on the 
+                                                            device, allowing timestamps presented in real time 
+                                                            instead of cycles.
+                    ROCE_CONTROL=<DEVICE_DEFAULT|ROCE_DISABLE|ROCE_ENABLE>Control support for RDMA over Converged Ethernet 
+                                                            (RoCE)
+                                                            0x0: DEVICE_DEFAULT
+                                                            0x1: ROCE_DISABLE
+                                                            0x2: ROCE_ENABLE
+                    TUNNEL_ECN_COPY_DISABLE=<False|True>    When TRUE, ECN field copy from inner to outer 
+                                                            header during encapsulation is disabled.
+                    UCTX_EN=<False|True>                    When set to TRUE, the device supports creation of 
+                                                            UCTX contexts.
+                    VECTOR_CALC_DISABLE=<False|True>        When TRUE, Vector-Calc operations are disabled
+		PROG CC:
+                    USER_PROGRAMMABLE_CC=<False|True>       When set to TRUE, the device will support program
+                                                            ming user defined CC algorithm.
+		HPCC INT:
+                    HPCC_INT_EN=<False|True>                When set to TRUE, the device will support HPCC CC 
+                                                            based on INT stamped RTT packets. The HPCC algo
+                                                            rithm should be programmed/configured separately 
+                                                            to this configuration.
+                    HPCC_INT_NP_RTT_DATA_MODE=<INT_MODE0|INT_MODE1>Defines how Notification Point (NP) generates the 
+                                                            data for the RTT response, out of the telemetry (INT) 
+                                                            information.
+                                                            0x0: INT_MODE0 
+                                                            0x1: INT_MODE1
+                    HPCC_INT_NP_RTT_DSCP=<NUM>              Defines how DSCP is used in RTT response.
+                                                            
+                    HPCC_INT_NP_RTT_DSCP_EN=<False|True>    Defines how DSCP is used in RTT response.
+                                                            
+                    HPCC_INT_SYSTEM_RTT=<NUM>               Modifies RTT evaluation.
+                                                            
+                                                            
+		PERFORMANCE TUNING CONF:
+                    ICM_CACHE_MODE=<DEVICE_DEFAULT|LARGE_SCALE_STEERING>Tuning ICM caching mode for different setups
+                                                            0x0: DEVICE_DEFAULT
+                                                            0x1: LARGE_SCALE_STEERING - very large scale 
+                                                            packet classification logic, with small scale for other 
+                                                            objects
+                                                            All other values are reserved
+                    TLS_OPTIMIZE=<False|True>               When TRUE, the device will optimize processing for 
+                                                            TLS operations.
+                                                            
+                                                            When FALSE, device defaults will apply for TLS pro
+                                                            cessing.
+                    TX_SCHEDULER_BURST=<NUM>                Log (base2) of the transmission scheduler default 
+                                                            burst size, given in bytes, Value 0x0 indicates using 
+                                                            device defaults.
+                    ZERO_TOUCH_TUNING_ENABLE=<False|True>   when TRUE, Zero Touch Tuning routine will automat
+                                                            ically tune device registers in order to achieve the 
+                                                            maximum performance
+		GLOBAL ROCE CC CONF:
+                    ROCE_CC_ALGO_SELECT_VALID=<False|True>  When TRUE, RoCE CC algorithm will be selected 
+                                                            based on ROCE_CC_PREFERRED_ALGO and 
+                                                            ROCE_CC_*_ALGO_ENABLE.
+                                                            When FALSE, the RoCE CC algorithm will be selected 
+                                                            based on device defaults.
+                    ROCE_CC_DC2QCN_ALGO_ENABLE=<False|True> When TRUE, RoCE CC algorithm DC2QCN is enabled
+                                                            Valid only if ROCE_CC_ALGO_SELECT_VALID is 
+                                                            TRUE
+                    ROCE_CC_HPCC_ALGO_ENABLE=<False|True>   When TRUE, RoCE CC algorithm HPCC is enabled
+                                                            Valid only if ROCE_CC_ALGO_SELECT_VALID is 
+                                                            TRUE
+                    ROCE_CC_PREFERRED_ALGO=<DC2QCN|HPCC|TIMELY|USER0>Indicates the preferred CC algorithm when multiple 
+                                                            are supported by the two ends of the connection
+                                                            0x0: TIMELY
+                                                            0x1: HPCC
+                                                            0x2: DC2QCN
+                                                            0x6: USER0
+                                                            other values are reserved.
+                                                            Valid only if ROCE_CC_ALGO_SELECT_VALID is 
+                                                            TRUE
+                    ROCE_CC_TIMELY_ALGO_ENABLE=<False|True> When TRUE, RoCE CC algorithm TIMELY is enabled
+                                                            Valid only if ROCE_CC_ALGO_SELECT_VALID is 
+                                                            TRUE
+                    ROCE_CC_USER0_ALGO_ENABLE=<False|True>  When TRUE, RoCE CC user-defined algorithm 0 is 
+                                                            enabled
+                                                            Valid only if ROCE_CC_ALGO_SELECT_VALID is 
+                                                            TRUE
+		NVMF TARGET CONF:
+                    NVMF_PACER_MODE=<DEVICE_DEFAULT|PACER_OFF|PACER_ON>Control IOP scheduling pacer
+                                                            0x0: DEVICE_DEFAULT
+                                                            0x1: PACER_OFF
+                                                            0x2: PACER_ON
+                    NVMF_PACER_THRESHOLD_READ=<NUM>         Log (base 2) of IOP pacer low threshold for READ 
+                                                            operations size. Smaller or equal operations will 
+                                                            bypass the pacer. Value given in Bytes. Valid only 
+                                                            when NVMF_PACER_MODE is PACER_ON.
+                    NVMF_PACER_THRESHOLD_WRITE=<NUM>        Log (base 2) of IOP pacer low threshold for WRITE 
+                                                            operations size. Smaller or equal operations will 
+                                                            bypass the pacer. Value given in Bytes. Valid only 
+                                                            when NVMF_PACER_MODE is PACER_ON.
+		IB DC CONF:
+                    DCR_LIFO_SIZE=<NUM>                     The total amount of InfiniBand  DCRs (Dynamically 
+                                                            Connected Responders), minus one.
+                    LOG_DCR_HASH_TABLE_SIZE=<NUM>           InfiniBand DC (Dynamically Connected) hash table 
+                                                            log2 size (for example: 7 means 128 entries)
+		VPI LINK TYPE:
+                    LINK_TYPE_P1=<ETH|IB>                   Select the link type (Ethernet or Infiniband) for the port
+                                                            0x1: IB - Infiniband
+                                                            0x2: ETH - Ethernet
+                    LINK_TYPE_P2=<ETH|IB>                   
+
+		ROCE CC:
+                    ROCE_CC_ALGORITHM_P1=<ECN|QCN>          Select RDMA over Converged Ethernet (RoCE) algo
+                                                            rithm
+                                                            0x0: ECN
+                                                            0x1: QCN
+                    ROCE_CC_ALGORITHM_P2=<ECN|QCN>          
+
+                    ROCE_CC_PRIO_MASK_P1=<NUM>              Each bit in this mask indicates if the RoCE should be 
+                                                            enabled on the n-th IEEE priority.
+                    ROCE_CC_PRIO_MASK_P2=<NUM>              
+
+		ROCE CC ECN:
+                    CLAMP_TGT_RATE_AFTER_TIME_INC_P1=<False|True>When receiving a CNP, the target rate should be 
+                                                            updated if the transmission rate was increased due 
+                                                            to the timer, and not only due to the byte counter
+                    CLAMP_TGT_RATE_AFTER_TIME_INC_P2=<False|True>
+
+                    CLAMP_TGT_RATE_P1=<False|True>          If set, whenever a CNP is processed, the target rate 
+                                                            is updated to be the current rate.
+                    CLAMP_TGT_RATE_P2=<False|True>          
+
+                    CNP_802P_PRIO_P1=<NUM>                  The 802.1p priority value of the generated CNP for 
+                                                            this port
+                    CNP_802P_PRIO_P2=<NUM>                  
+
+                    CNP_DSCP_P1=<NUM>                       The DiffServ Code Point of the generated CNP for 
+                                                            this port.
+                    CNP_DSCP_P2=<NUM>                       
+
+                    CNP_RES_PRIO_MODE_P1=<False|True>       If TRUE, CNP packets for this port contain priority 
+                                                            from a received request. If FALSE, CNP responses 
+                                                            use value set by CNP_802P_PRIO.
+                    CNP_RES_PRIO_MODE_P2=<False|True>       
+
+                    DCE_TCP_G_P1=<NUM>                      Used to update the congestion estimator (alpha) 
+                                                            once every dce_tcp_rtt microseconds, according to 
+                                                            the equation:
+                                                            Alpha = (cnp_received * dceTcpG) + (1 - dceTcpG) * 
+                                                            alpha .
+                                                            dceTcpG is divided by 2^10.
+                                                            cnp_received is set to one if a CNP was received for 
+                                                            this flow during period since the previous update and 
+                                                            the current update
+                    DCE_TCP_G_P2=<NUM>                      
+
+                    DCE_TCP_RTT_P1=<NUM>                    The time between updates of the alpha value, in 
+                                                            microseconds.
+                    DCE_TCP_RTT_P2=<NUM>                    
+
+                    INITIAL_ALPHA_VALUE_P1=<NUM>            The initial value of alpha to use when receiving the 
+                                                            first CNP for a flow. Expressed in a fixed point frac
+                                                            tion of 2^10.
+                    INITIAL_ALPHA_VALUE_P2=<NUM>            
+
+                    MIN_TIME_BETWEEN_CNPS_P1=<NUM>          Minimum time between sending CNPs from the port, 
+                                                            in microseconds.
+                    MIN_TIME_BETWEEN_CNPS_P2=<NUM>          
+
+                    RATE_REDUCE_MONITOR_PERIOD_P1=<NUM>     The minimum time between 2 consecutive rate 
+                                                            reductions for a single flow. Rate reduction will occur 
+                                                            only if a CNP is received during the relevant time 
+                                                            interval.
+                    RATE_REDUCE_MONITOR_PERIOD_P2=<NUM>     
+
+                    RATE_TO_SET_ON_FIRST_CNP_P1=<NUM>       The rate that is set for the flow when a rate limiter is 
+                                                            allocated to it upon first CNP received, in Mbps (=Full 
+                                                            Port Speed).
+                    RATE_TO_SET_ON_FIRST_CNP_P2=<NUM>       
+
+                    RPG_AI_RATE_P1=<NUM>                    The rate, in megabits per second, used to increase 
+                                                            rpTargetRate in the RPR_ACTIVE_INCREASE.
+                    RPG_AI_RATE_P2=<NUM>                    
+
+                    RPG_BYTE_RESET_P1=<NUM>                 Transmitted data between rate increases if no CNPs 
+                                                            are received. Given in Bytes (0=DISABLED)
+                    RPG_BYTE_RESET_P2=<NUM>                 
+
+                    RPG_GD_P1=<NUM>                         If a CNP is received, the flow rate is reduced at the 
+                                                            beginning of the next rate_reduce_monitor_period 
+                                                            interval to (1-Alpha/Gd)*CurrentRate. rpg_gd is 
+                                                            given as log2(Gd), where Gd may only be powers of 2.
+                    RPG_GD_P2=<NUM>                         
+
+                    RPG_HAI_RATE_P1=<NUM>                   The rate, in megabits per second, used to increase 
+                                                            rpTargetRate in the RPR_HYPER_INCREASE state.
+                    RPG_HAI_RATE_P2=<NUM>                   
+
+                    RPG_MAX_RATE_P1=<NUM>                   The maximum rate, in Mbits per second, at which an 
+                                                            RP can transmit. Once this limit is reached, the RP 
+                                                            rate limited is released and the flow is not rate lim
+                                                            ited any more (0=Full Port Speed).
+                    RPG_MAX_RATE_P2=<NUM>                   
+
+                    RPG_MIN_DEC_FAC_P1=<NUM>                The minimum factor by which the current transmit 
+                                                            rate can be changed when processing a CNP. Value is 
+                                                            given as a percentage (1-100).
+                    RPG_MIN_DEC_FAC_P2=<NUM>                
+
+                    RPG_MIN_RATE_P1=<NUM>                   The minimum value, in megabits per second, for rate 
+                                                            to limit.
+                    RPG_MIN_RATE_P2=<NUM>                   
+
+                    RPG_THRESHOLD_P1=<NUM>                  The number of times rpByteStage or rpTimeStage 
+                                                            can count before the RP rate control state machine 
+                                                            advances states.
+                    RPG_THRESHOLD_P2=<NUM>                  
+
+                    RPG_TIME_RESET_P1=<NUM>                 Time between rate increases if no CNPs are 
+                                                            received. Given in microseconds.
+                    RPG_TIME_RESET_P2=<NUM>                 
+
+		LLDP NB CONF:
+                    LLDP_NB_DCBX_P1=<False|True>            Enables DCBX (applicable when LLDP_NB_TX_
+                                                            MODE and LLDP_NB_RX_MODE are in ALL mode).
+                    LLDP_NB_DCBX_P2=<False|True>            
+
+                    LLDP_NB_RX_MODE_P1=<ALL|MANDATORY|OFF>  Enable the internal LLDP client, and define which 
+                                                            TLV it will process.
+                                                            0x0: OFF - Doesnot listen to incoming LLDP BPDU 
+                                                            (incoming LLDP frames will be routed to the host)
+                                                            0x1: MANDATORY - Listen to incoming LLDP frames, 
+                                                            store only the mandatory LLDP BPDUs (1..3)
+                                                            0x2: ALL - Receive and store all incoming LLDP 
+                                                            BPDUs
+                    LLDP_NB_RX_MODE_P2=<ALL|MANDATORY|OFF>  
+
+                    LLDP_NB_TX_MODE_P1=<ALL|MANDATORY|OFF>  Select which LLDP TLV will be generated by the NIC
+                                                            0x0: OFF - NIC internal LLDP client will not send 
+                                                            LLDP frames 
+                                                            0x1: MANDATORY - Transmits only mandatory LLDP 
+                                                            BPDU (ChassisID, PortID & TTL)
+                                                            0x2: ALL - Transmits optional LLDP BPDU if config
+                                                            ured
+                    LLDP_NB_TX_MODE_P2=<ALL|MANDATORY|OFF>  
+
+		LLDP NB DCBX:
+                    DCBX_CEE_P1=<False|True>                Enable DCBX in CEE mode
+                    DCBX_CEE_P2=<False|True>                
+
+                    DCBX_IEEE_P1=<False|True>               Enable DCBX in IEEE mode
+                    DCBX_IEEE_P2=<False|True>               
+
+                    DCBX_WILLING_P1=<False|True>            Allow the NIC to accept DCBX configuration from the 
+                                                            remote peer.
+                    DCBX_WILLING_P2=<False|True>            
+
+		KEEP LINK UP:
+                    AUTO_POWER_SAVE_LINK_DOWN_P1=<False|True>When set to TRUE, the port will automatically power 
+                                                            down when it senses the link is disconnected.
+                    AUTO_POWER_SAVE_LINK_DOWN_P2=<False|True>
+
+                    DO_NOT_CLEAR_PORT_STATS_P1=<False|True> When set, the port statistic counters are not cleared 
+                                                            on first host init. When cleared the port statistics are 
+                                                            cleared on first host init
+                    DO_NOT_CLEAR_PORT_STATS_P2=<False|True> 
+
+                    KEEP_ETH_LINK_UP_P1=<False|True>        When set, the NIC keeps the link up as long as the 
+                                                            server is not in standby mode (Ethernet only).
+                                                            
+                    KEEP_ETH_LINK_UP_P2=<False|True>        
+
+                    KEEP_IB_LINK_UP_P1=<False|True>         When set, the NIC keeps the link up as long as the 
+                                                            server is not in standby mode (InfiniBand only).
+                    KEEP_IB_LINK_UP_P2=<False|True>         
+
+                    KEEP_LINK_UP_ON_BOOT_P1=<False|True>    When set, the NIC keeps the link up as long as the 
+                                                            server is not in standby mode and a driver is not ini
+                                                            tialized.
+                    KEEP_LINK_UP_ON_BOOT_P2=<False|True>    
+
+                    KEEP_LINK_UP_ON_STANDBY_P1=<False|True> When set, the NIC keeps the link up from power-up 
+                                                            until the server is turned on, and when the server is in 
+                                                            standby
+                                                            mode (PCI L2/3 state). 
+                                                            Note: The link will be kept up only if the server can 
+                                                            provide enough power during standby (via PCI rails or 
+                                                            AUX power).
+                    KEEP_LINK_UP_ON_STANDBY_P2=<False|True> 
+
+		QOS CONF:
+                    NUM_OF_PFC_P1=<NUM>                     Number of IEEE priorities that may simultaneously 
+                                                            support flow control. 
+                                                             (See pfc_cap_admin DCBX_PARAM Register)
+                    NUM_OF_PFC_P2=<NUM>                     
+
+                    NUM_OF_TC_P1=<_1_TC|_2_TCs|_3_TCs|_4_TCs|_5_TCs|_6_TCs|_7_TCs|_8_TCs>Number of traffic classes, when DCB-X is enabled, 
+                                                            this is the maximum number of TC that can negotiate 
+                                                            with the remote peer. 
+                                                            0x0: _8_TCs
+                                                            0x1: _1_TC
+                                                            0x2: _2_TCs
+                                                            0x3: _3_TCs
+                                                            0x4: _4_TCs
+                                                            0x5: _5_TCs
+                                                            0x6: _6_TCs
+                                                            0x7: _7_TCs
+                    NUM_OF_TC_P2=<_1_TC|_2_TCs|_3_TCs|_4_TCs|_5_TCs|_6_TCs|_7_TCs|_8_TCs>
+
+                    NUM_OF_VL_P1=<_15_VLs|_1_VL|_2_VLs|_4_VLs|_8_VLs>Number of Infiniband Virtual Lanes for this port
+                                                            0x1: _1_VL - VL0 only
+                                                            0x2: _2_VLs - VL0, VL1
+                                                            0x3: _4_VLs - VL0..VL3
+                                                            0x4: _8_VLs - VL0..VL7
+                                                            0x5: _15_VLs --VL0, VL14 (VL15 is always present for 
+                                                            MADs)
+                    NUM_OF_VL_P2=<_15_VLs|_1_VL|_2_VLs|_4_VLs|_8_VLs>
+
+                    VL15_BUFFER_SIZE_P1=<NUM>               Log (base 2) of the VL15 receive port buffer, given in 
+                                                            units of 512B. Value 0x0 indicates device defaults.
+                                                            Valid only for Infiniband links.
+                    VL15_BUFFER_SIZE_P2=<NUM>               
+
+		MPFS CONF:
+                    DUP_MAC_ACTION_P1=<LAST_CFG|LOAD_BALANCE>Defines the forwarding behavior in MPFS for MACs which 
+                                                            are duplicated in more than one PF.
+                                                            0x0: LAST_CFG - last PF which added the MAC will 
+                                                            receive the traffic.
+                                                            0x1: LOAD_BALANCE - MPFS will load-balance ipv4 traf
+                                                            fic for packets with destination MAC addresses that 
+                                                            belong to more than one PF between all PFs that have this 
+                                                            MAC
+                    DUP_MAC_ACTION_P2=<LAST_CFG|LOAD_BALANCE>
+
+                    IB_ROUTING_MODE_P1=<GID|LID>            Select the routing mode for Infiniband among the PFs 
+                                                            (and hosts, if applicable)
+                                                            0x0: GID - each PF has a unique GID
+                                                            0x1: LID - each PF has a unique LID
+                    IB_ROUTING_MODE_P2=<GID|LID>            
+
+                    SRIOV_IB_ROUTING_MODE_P1=<GID|LID>      Select the IB routing mode for Virtual Functions
+                                                            0x0: GID
+                                                            0x1: LID
+                    SRIOV_IB_ROUTING_MODE_P2=<GID|LID>      
+
+                    UNKNOWN_UPLINK_MAC_FLOOD_P1=<False|True>Defines the forwarding behavior in MPFS for packets 
+                                                            arriving from the network (uplink) with destination MAC 
+                                                            address that does not appear in the MPFS FDB.
+                                                            When TRUE, these packets are flooded to all local MPFS
+                                                            ports.
+                                                            When FALSE, these packets are dropped.
+                    UNKNOWN_UPLINK_MAC_FLOOD_P2=<False|True>
+
+		WOL CONF:
+                    WOL_MAGIC_EN=<False|True>               Enables server Wake-on-LAN upon reception of WOL magic 
+                                                            packet.
+		PF PCI CONF:
+                    PF_NUM_PF_MSIX=<NUM>                    Number of MSI-X vectors assigned for this PF
+                                                            Value 0x0 indicates device defaults.
+                                                            Valid only when PER_PF_NUM_MSIX is set to TRUE
+                    PF_NUM_VF_MSIX=<NUM>                    Number of MSI-X vectors assigned for each VF associated 
+                                                            with the PF.
+                                                            Value 0x0 indicates device defaults
+                                                            valid only when PER_PF_NUM_VF_MSIX is set to TRUE.
+                    PF_SF_BAR_SIZE=<NUM>                    Log (base 2) of the BAR size of a single SF, given in KB. Valid 
+                                                            only when PF_TOTAL_SF is non-zero and PER_P
+                                                            F_NUM_SF is set to TRUE.
+                    PF_TOTAL_SF=<NUM>                       The total number of Sub Function partitions (SFs) that can 
+                                                            be sup
+                                                            ported, for this PF. 
+                                                            Valid only when PER_PF_NUM_SF is set to TRUE
+		HCA CONF:
+                    MULTI_PORT_VHCA_EN=<False|True>         When set, the PF reports the multi-port-vhca capability.
+                    PCI_WR_ORDERING=<force_relax|per_mkey>  Controls the PCI ordering attribute for write accesses from 
+                                                            the device
+                                                            0x0: per_mkey - Each MKey may be configured differently 
+                                                            for Relaxed Ordering
+                                                            0x1: force_relax - All MKeys will be set to use Relaxed 
+                                                            Ordering at creation time
+                                                            show this setting only when NV_PCI_CONF. advanced_pci_
+                                                            settings is true.
+		ECPF CONF:
+                    ECPF_ESWITCH_MANAGER=<ECPF|EXTERNAL_HOST_PF>Select who owns the E-switch.
+                                                            0x0: EXTERNAL_HOST_PF
+                                                            0x1: ECPF
+                    ECPF_PAGE_SUPPLIER=<ECPF|EXTERNAL_HOST_PF>Select who supplies ICM pages of the external host func
+                                                            tions to device. 
+                                                            0x0: EXTERNAL_HOST_PF - External host supplies 
+                                                            required ICM pages to handle it.
+                                                            0x1: ECPF - ECPF supplies required ICM pages to handle 
+                                                            the external host.
+                                                            
+		EXTERNAL PORT CTRL:
+                    ALLOW_RD_COUNTERS=<False|True>          If set, indicates the host function which is allowed to 
+                                                            read counters of external physical port.
+                    PORT_OWNER=<False|True>                 If set, indicates the function of the host's own the 
+                                                            external physical port.
+                    RENEG_ON_CHANGE=<False|True>            When cleared, a link-down/up sequence from the 
+                                                            driver (PAOS) triggers re-negotiation of the link 
+                                                            speed and parameters with the remote peer. When 
+                                                            set, a link down/up sequence will trigger re-negotia
+                                                            tion only if any link parameters were changed by a 
+                                                            driver since last link negotiation. 
+                                                            This parameter is applicable when the port_owner 
+                                                            parameter is set for this PF
+                    TRACER_ENABLE=<False|True>              If set, indicates the function may own the Device 
+                                                            Tracer.
+		ROM BOOT CONF2:
+                    BOOT_UNDI_NETWORK_WAIT=<NUM>            The number of seconds Flexboot waits after issuing 
+                                                            a UNDI open commands until it starts using the 
+                                                            interface.
+                    IP_VER=<IPv4|IPv4_IPv6|IPv6|IPv6_IPv4>  Select which IP protocol version will be used by Flex
+                                                            boot. If both are configured, Flexboot will try to boot 
+                                                            with the 2nd protocol only if DHCP parameters for 
+                                                            the first protocol are not available, or if booting with 
+                                                            the first protocol has failed.
+                                                            0x0: IPv4
+                                                            0x1: IPv6
+                                                            0x2: IPv4_IPv6
+                                                            0x3: IPv6_IPv4
+                                                            
+		ROM UEFI CONF:
+                    UEFI_HII_EN=<False|True>                Enable UEFI/BIOS HII menus for this PCI function. 
+                                                            Warning: HII menus might be required for fixing and 
+                                                            debugging of system boot issues.
+                                                            
+		ROM DEBUG LEVEL:
+                    BOOT_DBG_LOG=<False|True>               When set, Flexboot generates debug logs at the levels 
+                                                            specified by the following parameters: BOOT_DB
+                                                            G_LOG_STP, BOOT_DBG_LOG_ ROMPREFIX, BOOT_D
+                                                            BG_LOG_DHCP, BOOT_DBG_LOG_DHCP6, 
+                                                            BOOT_DBG_LOG_ARP, BOOT_DBG_LOG_ NEIGHBOR, 
+                                                            BOOT_DBG_LOG_ NDP, BOOT_DBG_LOG_URI, 
+                                                            BOOT_DBG_LOG_IB_DRV, BOOT_DB
+                                                            G_LOG_DRV_CMD, BOOT_DBG_LOG_DRV_DEV, 
+                                                            BOOT_DBG_LOG_DRV_PORT, BOOT_DBG_LOG_TFTP, 
+                                                            BOOT_DBG_LOG_UDP, BOOT_DBG_LOG_TCP, 
+                                                            BOOT_DBG_LOG_TCPIP, BOOT_DBG_LOG_IP, and 
+                                                            OOT_DBG_LOG_IPV6.
+                                                            
+                    BOOT_DBG_LOG_ARP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot's Address resolution Protocol 
+                                                            (ARP)
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_DHCP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot's DHCP
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_DHCP6=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot's DHCPv6
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_DRIVER_SETTINGS=<ADVANCED|ALL|BASIC|DISABLE>Debug level for non volatile configuration manage
+                                                            ment.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_DRV=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s driver (init, teardown, poll 
+                                                            CQ etc) 
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_IP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s IPv4 stack.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_IPV6=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s IPv6 stack.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_NDP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s IPv6 Neighbor Discovery 
+                                                            Protocol
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_NDRV=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s NODNIC driver (init, tear
+                                                            down, poll CQ etc) 
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_NDRV_CMD=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s NODNIC Driver interface
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_NDRV_DEV=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s NODNIC Driver tear-down 
+                                                            and bring ups operations.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_NDRV_PORT=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s NODNIC Driver port man
+                                                            agement.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_NEIGHBOR=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot's Neighbor table (which is 
+                                                            filled by ARP and NDP)
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_NETDEVICE=<ADVANCED|ALL|BASIC|DISABLE>Network Device Link status and traffic
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_PXE_UNDI=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s UNDI interface
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_ROMPREFIX=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot's driver bootstrap code
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_STATUS=<ADVANCED|ALL|BASIC|DISABLE>Debug level for status update interface.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_STP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot's Spanning Tree Protocol
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_TCP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s TCP stack.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_TCPIP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s TCP/IP stack.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_TFTP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s TFTP stack.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_UDP=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s UDP stack.
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+                    BOOT_DBG_LOG_URI=<ADVANCED|ALL|BASIC|DISABLE>Debug level for Flexboot"s URI parsing code
+                                                            0x0: DISABLE
+                                                            0x1: BASIC
+                                                            0x2: ADVANCED
+                                                            0x3: ALL
+                                                            
+		ROM UEFI DEBUG LEVEL:
+                    UEFI_DEBUG_LOG_BLKIO=<False|True>       Enable UEFI debug level logs for BlkIo Driver.
+                                                            
+                    UEFI_DEBUG_LOG_BM=<False|True>          Enable UEFI debug level logs for Boot Manager.
+                                                            
+                    UEFI_DEBUG_LOG_CACHE=<False|True>       Enable UEFI debug level logs for Memory range 
+                                                            cachebility changes.
+                                                            
+                    UEFI_DEBUG_LOG_DISPATCH=<False|True>    Enable UEFI debug level logs for PEI/DXE/SMM Dis
+                                                            patchers.
+                                                            
+                    UEFI_DEBUG_LOG_EVENTS=<False|True>      Enable UEFI debug level logs of Event.
+                                                            
+                    UEFI_DEBUG_LOG_FS=<False|True>          Enable UEFI debug level logs for EFI file system 
+                                                            accesses.
+                                                            
+                    UEFI_DEBUG_LOG_GCD=<False|True>         Enable UEFI debug level logs for Global Coherency 
+                                                            Database changes.
+                                                            
+                    UEFI_DEBUG_LOG_INIT=<False|True>        Enable UEFI debug level initialization log. 
+                                                            
+                    UEFI_DEBUG_LOG_LOAD=<False|True>        Enable UEFI debug level logs for load events
+                                                            
+                    UEFI_DEBUG_LOG_PAGE=<False|True>        Enable UEFI debug level logs for page Alloc & Free.
+                                                            
+                    UEFI_DEBUG_LOG_POOL=<False|True>        Enable UEFI debug level logs for pool Alloc & Free.
+                                                            
+                    UEFI_DEBUG_LOG_SNI=<False|True>         Enable UEFI debug level logs SNI Driver.
+                                                            
+                    UEFI_DEBUG_LOG_UNDI=<False|True>        Enable UEFI debug level logs UNDI Driver.
+                                                            
+                    UEFI_LOGS=<DISABLED|STDERR|STDOUT>      Select the output device logs generated by the NIC/
+                                                            HBA
+                                                            UEFI expansion ROM.
+                                                            0x0: DISABLED
+                                                            0x1: STDOUT
+                                                            0x2: STDERR
+                                                            
+                    UEFI_LOG_MIN_SEVERITY=<DEBUG|ERROR|INFO|WARNING>NIC/HBA UEFI expansion ROM
+                                                            0x0: ERROR
+                                                            0x1: WARNING
+                                                            0x2: INFO
+                                                            0x3: DEBUG
+                                                            Note - Enabling of debug logs for specific modules is 
+                                                            possible after setting the severity to DEBUG.
+                                                            
+                    UEFI_LOG_VERBOSE=<False|True>           Detailed debug messages that may significantly 
+                                                            impact boot
+                                                            performance debug messages.
+                                                            
+		ROM BOOT CONF1:
+                    BOOT_INTERRUPT_DIS=<False|True>         When set to TRUE, legacy interrupts should not be 
+                                                            used for receive/transmit indication. Polling should be 
+                                                            used instead.
+                                                            Supported only if boot_legacy_interrupt_disable_sup
+                                                            ported =TRUE.
+                    BOOT_LACP_DIS=<False|True>              Disable IEEE 802.3ad Link Aggregation Control Proto
+                                                            col (LACP) for legacy BIOS expansion ROM (Flexboot).
+                                                            
+                    BOOT_RETRY_CNT=<NONE|UNLIMITED|_1|_2|_3|_4|_5|_6>Number of retries to attempt in case of boot failure 
+                                                            (FlexBoot)
+                                                            0x0: NONE
+                                                            0x1: _1
+                                                            0x2: _2
+                                                            0x3: _3
+                                                            0x4: _4
+                                                            0x5: _5
+                                                            0x6: _6
+                                                            0x7: UNLIMITED
+                                                            
+                    BOOT_VLAN=<NUM>                         VLAN ID for network boot.
+                                                            
+                    BOOT_VLAN_EN=<False|True>               Enable VLAN mode for network boot.
+                    LEGACY_BOOT_PROTOCOL=<ISCSI|ISCSI_WO_FAIL_PXE|NONE|PXE|PXE_WO_FAIL_ISCSI>Select boot protocol for legacy BIOS expansion ROM 
+                                                            (Flexboot)
+                                                            0x0: NONE - The expansion ROM will not add this PCI 
+                                                            PF as a boot target during the POST stage.
+                                                            0x1: PXE - The expansion ROM will use PXE boot.
+                                                            0x2: ISCSI - The expansion ROM will use iSCSI boot.
+                                                            0x4: PXE_WO_FAIL_ISCSI - PXE without fail-over to 
+                                                            ISCSI. Supported when legacy_boot_wo_failover_
+                                                            supported==1.
+                                                            0x5: ISCSI_WO_FAIL_PXE - ISCSI without fail-over to 
+                                                            PXE.Supported when legacy_boot_wo_failover_
+                                                            supported==1.
+		ROM IB BOOT CONF:
+                    BOOT_PKEY=<NUM>                         Infiniband P_Key to be used by PXE boot
+                                                            
+		PCI CONF:
+                    ADVANCED_PCI_SETTINGS=<False|True>      Show advanced PCI settings.
+                    ATS_ENABLED=<False|True>                When set to TRUE, the device will support ATS.
+                    DYNAMIC_VF_MSIX_TABLE=<False|True>      When set to TRUE, the device will support allocation of 
+                                                            MSI-Xs to VFs by the PF, after SR-IOV is enabled (while the 
+                                                            VF is down).
+                    EXP_ROM_NVME_UEFI_ARM_ENABLE=<False|True>Enable Expansion ROM option for UEFI for ARM based host 
+                                                            for NVMe functions
+                    EXP_ROM_NVME_UEFI_x86_ENABLE=<False|True>Enable Expansion ROM option for UEFI for x86 based host 
+                                                            for NVMe functions
+                    EXP_ROM_PXE_ENABLE=<False|True>         Enable Expansion ROM option for PXE
+                    EXP_ROM_UEFI_ARM_ENABLE=<False|True>    Enable Expansion ROM option for UEFI for ARM based host
+                    EXP_ROM_UEFI_x86_ENABLE=<False|True>    Enable Expansion ROM option for UEFI for x86 based host
+                    EXP_ROM_VIRTIO_BLK_UEFI_ARM_ENABLE=<False|True>Enable Expansion ROM option for UEFI for ARM based host 
+                                                            for VirtIO-BLK functions
+                    EXP_ROM_VIRTIO_BLK_UEFI_x86_ENABLE=<False|True>Enable Expansion ROM option for UEFI for x86 based host 
+                                                            for VirtIO-BLK functions
+                    EXP_ROM_VIRTIO_NET_PXE_ENABLE=<False|True>Enable Expansion ROM option for PXE for VirtIO-NET func
+                                                            tions
+                    EXP_ROM_VIRTIO_NET_UEFI_ARM_ENABLE=<False|True>Enable Expansion ROM option for UEFI for ARM based host 
+                                                            for VirtIO-NET functions
+                    EXP_ROM_VIRTIO_NET_UEFI_x86_ENABLE=<False|True>Enable Expansion ROM option for UEFI for x86 based host 
+                                                            for VirtIO-NET functions
+                    FORCE_ETH_PCI_SUBCLASS=<False|True>     Force the PCI function identifier with Ethernet subclass 
+                                                            (00h). Supported only when ADVANCED_PCI_SETTINGS is 
+                                                            set.
+                    IBM_AS_NOTIFY_EN=<False|True>           Enable IBM's AS Notify feature. Supported only when 
+                                                            NV_PCI_CAP.ibm_as_notify_supported is set.
+                    IBM_CAPI_EN=<False|True>                Enable IBM's Coherent Accelerator Processor Interface 
+                                                            (CAPI) mode. Supported only when ADVANCED_PCI_SET
+                                                            TINGS is set.
+                    IBM_TUNNELED_ATOMIC_EN=<False|True>     Enable IBM's Tunneled Atomic feature. Supported only 
+                                                            when NV_PCI_CAP.ibm_tunneled_atomic_supported is 
+                                                            set.
+                    P2P_ORDERING_MODE=<DEVICE_DEFAULT|SECURE_ALL|SECURE_NONE|SECURE_TRUST>PCI Peer-to-Peer ordering security mode, between read 
+                                                            requests completions and writes.
+                                                            0x0: DEVICE_DEFAULT
+                                                            0x1: SECURE_NONE - no protection/no peer-to-peer
+                                                            0x2: SECURE_TRUST - protect untrusted functions
+                                                            0x3: SECURE_ALL - protect all functions
+		SAFE MODE CONF:
+                    SAFE_MODE_ENABLE=<False|True>           Enable Safe Mode activation after crossing a threshold of 
+                                                            consecutive failed boots (no driver load).
+                    SAFE_MODE_THRESHOLD=<NUM>               Default value of the threshold for failed driver loads (driver 
+                                                            load was not detected between reboots). When crossed, the 
+                                                            device will load in Safe Mode with some default configura
+                                                            tions, suspected as possible causes for driver load fail.
+		HOST PRIV CONF:
+                    HOST_DISABLE_PORT_COUNTER=<False|True>  When TRUE, the host will not be allowed to read 
+                                                            Physical port counters
+                    HOST_DISABLE_PORT_OWNER=<False|True>    When TRUE, the host will not be allowed to be Port 
+                                                            Owner
+                    HOST_DISABLE_RSHIM=<False|True>         When TRUE, the host does not have an RSHIM 
+                                                            function to access the embedded CPU registers
+                    HOST_DISABLE_TRACER_OWNER=<False|True>  When TRUE, the host will not be allowed to own the 
+                                                            Tracer
+                    HOST_PRIV_LEVEL=<LIMITED|PRIVILEGED>    Privilege level of the host
+                                                            0x0: PRIVILEGED - host has all supported privi
+                                                            leges
+                                                            0x1: LIMITED - host is not allowed to modify global/
+                                                            per port/parameters or access other hosts param
+                                                            eters
+                                                            
+                                                            

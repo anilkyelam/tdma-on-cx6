@@ -1,0 +1,90 @@
+
+
+####### PTP setup #######
+Guides:
+https://docs.mellanox.com/display/ONYXv381174/Precision+Time+Protocol          
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ptp_using_ptp4l
+Mellanox PTP: https://community.mellanox.com/s/article/Running-Linux-PTP-with-ConnectX-4-ConnectX-5-ConnectX-6
+    git clone git://git.code.sf.net/p/linuxptp/code linuxptp
+    make
+    sudo make install
+Run:
+    sudo ptp4l -m -P -i enp59s0 (for master)
+    sudo ptp4l -m -P -i enp59s0 -s (for slave)
+Run as a service on startup:
+    Edit /lib/systemd/system/ptp4l.service and set proper interface (-i enp59s0)
+    sudo systemctl daemon-reload
+    sudo systemctl start ptp4l
+    sudo systemctl status ptp4l
+    sudo tail -f /var/log/syslog    (logs)
+
+
+####### On the switch ########
+Need to enable multicast on the switch so that PTP master/slaves can find each other.
+Help: https://docs.mellanox.com/pages/viewpage.action?pageId=34250299
+
+ssh sw100 (RivVeylsEg4)
+Ports Eth1/17 and Eth1/18 for yeti-00 and 01 CX-6s
+    start: "enable", "config terminal"
+    setup vlan: 
+        vlan 3
+        name ptp-ayelam
+    add ports to vlan: 
+        interface ethernet 1/17 switchport access vlan 3
+        interface ethernet 1/18 switchport access vlan 3
+        interface vlan 3 ip address 10.0.5.0 255.0.0.0
+    enable multicast on vlan:
+        ip routing
+        ip multicast-routing
+        protocol pim
+        interface vlan 3 ip pim sparse-mode
+        interface vlan 3 ip igmp version 3
+        ip igmp snooping
+        vlan 3 ip igmp snooping
+        show ip igmp interface  (should show vlan 3)
+        show ip igmp interface  (will show the ptp groups once ptp4l is started on the hosts)
+
+
+####### DPDK setup ######
+
+sudo -H pip3 install meson
+sudo apt-get install -y python3-pyelftools python-pyelftool
+
+git clone https://github.com/DPDK/dpdk
+cd dpdk
+meson -Dexamples=all build
+ninja -C build
+
+
+####### Pktgen Setup #####
+Install dpdk to system
+    chmod a+w dpdk/     (for sudo access to your nfs folder)
+    sudo ninja -C build install
+    sudo ldconfig
+    export PKG_CONFIG_PATH=/usr/local/lib/x86_64-linux-gnu/pkgconfig
+
+Build Pktgen
+sudo apt-get install libpcap-dev libnuma-dev
+sudo apt install lua5.3
+git clone https://github.com/pktgen/Pktgen-DPDK
+make
+make buildlua
+
+sudo ./Builddir/app/pktgen -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500,txq_inline=256,txqs_min_inline=4  -- -m "[2:4].0" -T 
+# sudo ./build/app/dpdk-testpmd -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500  -- -i --nb-cores=2 --txq=2 --rxq=2
+
+
+####### Packet Pacing #########
+https://doc.dpdk.org/guides/nics/mlx5.html
+https://github.com/DPDK/dpdk/blob/main/drivers/net/mlx5/mlx5.c
+
+Patches that introduced this feature:
+https://patches.dpdk.org/project/dpdk/patch/1594298216-3746-1-git-send-email-viacheslavo@mellanox.com/
+https://inbox.dpdk.org/dev/7707630.AmxAOCipGc@thomas/T/
+
+
+Enabling tx_pp flag:  sudo ./build/app/dpdk-testpmd -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500  -- -i --nb-cores=2 --txq=2 --rxq=2
+But I hit this error first: "mlx5_net: WQE rate mode is required for packet pacing"
+With some guidance from https://www.mail-archive.com/users@dpdk.org/msg05378.html, was able to figure out the issue by some serious guesswork:
+sudo mlxconfig -d 0000:3b:00.0  set REAL_TIME_CLOCK_ENABLE=1
+

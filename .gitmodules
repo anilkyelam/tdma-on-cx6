@@ -1,0 +1,6 @@
+[submodule "Pktgen-DPDK"]
+	path = Pktgen-DPDK
+	url = https://github.com/anilkyelam/Pktgen-DPDK/tree/tdma-on-cx6
+[submodule "dpdk"]
+	path = dpdk
+	url = https://github.com/anilkyelam/dpdk/tree/tdma-on-cx6
