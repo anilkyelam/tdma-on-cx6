@@ -1,0 +1,671 @@
+EAL: Detected 80 lcore(s)
+EAL: Detected 2 NUMA nodes
+EAL: Detected shared linkage of DPDK
+EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
+EAL: Selected IOVA mode 'PA'
+EAL: VFIO support initialized
+EAL: Probe PCI driver: mlx5_pci (15b3:101d) device: 0000:3b:00.0 (socket 0)
+mlx5_net: checking device "mlx5_1"
+mlx5_net: checking device "mlx5_0"
+mlx5_net: PCI information matches for device "mlx5_0"
+mlx5_net: no E-Switch support detected
+mlx5_net: naming Ethernet device "0000:3b:00.0"
+mlx5_net: txq_inline: deprecated parameter, converted to txq_inline_max
+mlx5_net: DevX is supported
+mlx5_net: enhanced MPW is supported
+mlx5_net: SWP support: 7
+mlx5_net: 	min_single_stride_log_num_of_bytes: 6
+mlx5_net: 	max_single_stride_log_num_of_bytes: 13
+mlx5_net: 	min_single_wqe_log_num_of_strides: 3
+mlx5_net: 	max_single_wqe_log_num_of_strides: 16
+mlx5_net: 	supported_qpts: 256
+mlx5_net: device supports Multi-Packet RQ
+mlx5_net: tunnel offloading is supported
+mlx5_net: MPLS over GRE/UDP tunnel offloading is not supported
+mlx5_net: txq_inline: deprecated parameter, converted to txq_inline_max
+mlx5_net: checksum offloading is supported
+mlx5_net: maximum Rx indirection table size is 512
+mlx5_net: VLAN stripping is supported
+mlx5_net: enhanced MPS is enabled
+mlx5_net: Device supports LRO
+mlx5_net: LRO session timeout set to 8 usec
+mlx5_net: LRO minimal size of TCP segment required for coalescing is 1348 bytes
+mlx5_net: The REG_C meter uses is 6
+mlx5_net: Flow Hit ASO is supported.
+mlx5_net: Sampler enabled!
+mlx5_net: Rx CQE compression is supported
+mlx5_net: Timestamp counter frequency 1000000 kHz
+mlx5_net: Packet pacing is supported
+mlx5_net: Cross channel ops are supported
+mlx5_net: WQE index ignore is supported
+mlx5_net: Non-wire SQ feature is supported
+mlx5_net: Static WQE SQ feature is supported (24)
+mlx5_net: WQE rate PP mode is supported
+mlx5_net: FCS stripping configuration is not supported
+mlx5_net: port 0 MAC address is 94:40:c9:8a:d6:fe
+mlx5_net: port 0 MTU is 1500
+mlx5_net: port 0 forcing Ethernet interface up
+mlx5_net: Tx VLAN insertion is supported
+mlx5_net: min tx inline configured: 0
+mlx5_net: Hash list with mlx5_0_flow_table size 0x1000 is created.
+mlx5_net: Cache list mlx5_0_port_id_action_cache initialized.
+mlx5_net: Cache list mlx5_0_push_vlan_action_cache initialized.
+mlx5_net: Cache list mlx5_0_sample_action_cache initialized.
+mlx5_net: Cache list mlx5_0_dest_array_cache initialized.
+mlx5_net: Hash list with mlx5_0_tags size 0x2000 is created.
+mlx5_net: Hash list with mlx5_0_hdr_modify size 0x10000 is created.
+mlx5_net: Hash list with mlx5_0_encaps_decaps size 0x10000 is created.
+mlx5_net: Hash list with flow groups size 0x10000 is created.
+mlx5_net: Port 0 queue counter object cannot be created by DevX - fall-back to use the kernel driver global queue counter.
+mlx5_net: port 0 supported flow priorities: 0-3 for ingress or egress root table, 0-21843 for non-root table or transfer root table.
+mlx5_net: metadata mode 0
+mlx5_net: metadata MARK mask 00FFFFFF
+mlx5_net: metadata META mask FFFFFFFF
+mlx5_net: metadata reg_c0 mask FFFFFFFF
+mlx5_net: Cache list hrxq initialized.
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=1 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: Cache list NIC_ingress_65534_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 new: 1.
+mlx5_net: Table_id 65534 tunnel 0 group 65534 registered.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 new: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 new: 1.
+mlx5_net: Table_id 65533 tunnel 0 group 65533 registered.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 new: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 ref--: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 removed.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 deref: 1.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 removed.
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=1 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: Cache list NIC_ingress_65534_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 new: 1.
+mlx5_net: Table_id 65534 tunnel 0 group 65534 registered.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 new: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 new: 1.
+mlx5_net: Table_id 65533 tunnel 0 group 65533 registered.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 new: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 ref--: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 removed.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 deref: 1.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 removed.
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=1 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: Cache list NIC_ingress_65534_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 new: 1.
+mlx5_net: Table_id 65534 tunnel 0 group 65534 registered.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 new: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 new: 1.
+mlx5_net: Table_id 65533 tunnel 0 group 65533 registered.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 new: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 ref--: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 removed.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 deref: 1.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 removed.
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=1 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: Cache list NIC_ingress_65534_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 new: 1.
+mlx5_net: Table_id 65534 tunnel 0 group 65534 registered.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 new: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 new: 1.
+mlx5_net: Table_id 65533 tunnel 0 group 65533 registered.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 new: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 ref--: 1.
+mlx5_net: Cache list NIC_ingress_65533_matcher_cache entry 0x17f283ac0 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25b068 removed.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 deref: 1.
+mlx5_net: Hash list mlx5_0_hdr_modify entry 0x17f283d00 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 removed.
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=1 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: Cache list NIC_ingress_65534_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 new: 1.
+mlx5_net: Table_id 65534 tunnel 0 group 65534 registered.
+mlx5_net: Can't allocate hash list mlx5_0_hdr_modify entry.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 removed.
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=1 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: port 0 group=65533 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffd table=0xfffd
+mlx5_net: port 0 group=65534 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0xfffe table=0xfffe
+mlx5_net: Cache list NIC_ingress_65534_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 new: 1.
+mlx5_net: Table_id 65534 tunnel 0 group 65534 registered.
+mlx5_net: Can't allocate hash list mlx5_0_hdr_modify entry.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f25afc0 removed.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f27f500 new: 1.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f27f500 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x17f27f500 removed.
+TELEMETRY: No legacy callbacks, legacy socket not created
+mlx5_net: port 0 Tx queues number update: 0 -> 1
+mlx5_net: port 0 Rx queues number update: 0 -> 1
+mlx5_net: port 0 configuring Rx queue 0 for 256 descriptors
+mlx5_net: port 0 maximum number of segments per packet: 1
+mlx5_net: port 0 Rx Queue 0 max LRO message size adjusted to 1280 bytes
+mlx5_net: port 0 CRC stripping is enabled, 0 bytes will be subtracted from incoming frames to hide it
+mlx5_net: port 0 adding Rx queue 0 to list
+mlx5_net: port 0 configuring queue 0 for 512 descriptors
+mlx5_net: port 0 adding Tx queue 0 to list
+mlx5_net: port 0 starting device
+mlx5_net: port 0 Rx queues number update: 1 -> 1
+mlx5_net: Clock Queue error sync lost.
+mlx5_net: port 0 Tx queue 0 allocated and configured 512 WRs
+mlx5_net: Port 0 txq 0 updated with 0x172707be8.
+mlx5_net: Port 0 device_attr.max_qp_wr is 32768.
+mlx5_net: Port 0 device_attr.max_sge is 30.
+mlx5_net: Port 0 Rx queue registering mp Default RX  0:0 having 1 chunks.
+mlx5_net: port 0 SPRQ queue 0 allocated and configured 256 segments (max 256 packets)
+mlx5_net: Port 0 Rx CQE compression is enabled, format 0.
+mlx5_net: Port 0 rxq 0 updated with 0x17f285558.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Cache list NIC_ingress_0_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 new: 1.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 new: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 new: 1.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 reuse: 2.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 new: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 ref++: 2.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 reuse: 3.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref++: 2.
+mlx5_net: Cache list hrxq entry 0x172691280 ref++: 3.
+mlx5_net: port 0 has selected Tx function supporting offloads 0500/0500
+mlx5_net: 	METAD (tx Scheduling)
+mlx5_net: 	EMPW  (Enhanced MPW)
+mlx5_net: port 0 selected vectorized SPRQ Rx function
+mlx5_net: port 0 setting primary MAC address
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 3.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref--: 2.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 3.
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 2.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 ref--: 1.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 2.
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 removed.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref--: 1.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 removed.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Cache list NIC_ingress_0_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 new: 1.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 new: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 new: 1.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 reuse: 2.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 new: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 ref++: 2.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 reuse: 3.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref++: 2.
+mlx5_net: Cache list hrxq entry 0x172691280 ref++: 3.
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 3.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref--: 2.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 3.
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 2.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 ref--: 1.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 2.
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 removed.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref--: 1.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 removed.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Cache list NIC_ingress_0_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 new: 1.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 new: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 new: 1.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 reuse: 2.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 new: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 ref++: 2.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 reuse: 3.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref++: 2.
+mlx5_net: Cache list hrxq entry 0x172691280 ref++: 3.
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 3.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref--: 2.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 3.
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 2.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 ref--: 1.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 2.
+mlx5_net: Cache list hrxq entry 0x172691280 ref--: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 removed.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref--: 1.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 removed.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 deref: 1.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 removed.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Cache list NIC_ingress_0_matcher_cache initialized.
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 new: 1.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 new: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 new: 1.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 reuse: 2.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bb480 new: 1.
+mlx5_net: Cache list hrxq entry 0x172691280 ref++: 2.
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: port 0 group=0 transfer=0 external=0 fdb_def_rule=0 translate=STANDARD
+mlx5_net: port 0 group=0 table=0
+mlx5_net: Hash list mlx5_0_flow_table entry 0x172692fc0 reuse: 3.
+mlx5_net: Table_id 0 tunnel 0 group 0 registered.
+mlx5_net: Cache list NIC_ingress_0_matcher_cache entry 0x1726bbac0 ref++: 2.
+mlx5_net: Cache list hrxq entry 0x172691280 ref++: 3.
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000
+mlx5_net: mlx5_tx_burst_empw_simple w
+mlx5_net: mlx5_tx_burst_empw_simple n
+mlx5_net: mlx5_tx_burst_empw_simple i
+mlx5_net: mlx5_tx_burst_empw_simple d
+mlx5_net: TX PP feature is on
+mlx5_net: TX PP feature info. ol_flags: 1, mask: 800000

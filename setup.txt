@@ -58,7 +58,7 @@ ninja -C build
 
 ####### Pktgen Setup #####
 Install dpdk to system
-    chmod a+w dpdk/     (for sudo access to your nfs folder)
+    chmod -R a+wx dpdk/     (for sudo access to your nfs folder)
     sudo ninja -C build install
     sudo ldconfig
     export PKG_CONFIG_PATH=/usr/local/lib/x86_64-linux-gnu/pkgconfig
@@ -78,13 +78,54 @@ sudo ./Builddir/app/pktgen -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500,txq_inline=
 https://doc.dpdk.org/guides/nics/mlx5.html
 https://github.com/DPDK/dpdk/blob/main/drivers/net/mlx5/mlx5.c
 
-Patches that introduced this feature:
+Patches that introduced and discussed this feature:
 https://patches.dpdk.org/project/dpdk/patch/1594298216-3746-1-git-send-email-viacheslavo@mellanox.com/
 https://inbox.dpdk.org/dev/7707630.AmxAOCipGc@thomas/T/
+All patches: https://patches.dpdk.org/project/dpdk/list/?series=&submitter=&state=*&q=packet+pacing&archive=both&delegate=
+
+Patch descriptions:
+This patch creates the special completion queue providing
+reference completions to schedule packet send from
+other transmitting queues.
+
+The dedicated Rearm Queue is needed to fire the work requests to
+the Clock Queue in realtime. The Clock Queue should never stop,
+otherwise the clock synchronization mignt be broken and packet
+send scheduling would fail. The Rearm Queue uses cross channel
+SEND_EN/WAIT operations to provides the requests to the
+CLock Queue in robust way.
+
+This patch allocates the Packet Pacing context from the kernel,
+configures one according to requested pace send scheduling
+granularuty and assigns to Clock Queue.
+rate = NS_PER_S / sh->txpp.tick;
+MLX5_SET(set_pp_rate_limit_context, &pp, rate_mode, sh->txpp.test ? MLX5_DATA_RATE : MLX5_WQE_RATE);    // bps or pps 
+tx_pp <== send scheduling granularity. (so 1 packet every 500ns, can't go more.. can send 6.25kB at 100Gbps)
+
+This patch creates the special completion queue providing
+reference completions to schedule packet send from
+other transmitting queues.
+
+The dedicated Rearm Queue is needed to fire the work requests to
+the Clock Queue in realtime. The Clock Queue should never stop,
+otherwise the clock synchronization mignt be broken and packet
+send scheduling would fail. The Rearm Queue uses cross channel
+SEND_EN/WAIT operations to provides the requests to the
+CLock Queue in robust way.
+(all this stuff for precise clock synchronization)
+
+
+
+
+
 
 
 Enabling tx_pp flag:  sudo ./build/app/dpdk-testpmd -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500  -- -i --nb-cores=2 --txq=2 --rxq=2
 But I hit this error first: "mlx5_net: WQE rate mode is required for packet pacing"
 With some guidance from https://www.mail-archive.com/users@dpdk.org/msg05378.html, was able to figure out the issue by some serious guesswork:
-sudo mlxconfig -d 0000:3b:00.0  set REAL_TIME_CLOCK_ENABLE=1
+sudo mlxconfig -d 0000:3b:00.0  set REAL_TIME_CLOCK_ENABLE=1    (and reboot)
+
+
+http://patches.dpdk.org/project/dpdk/patch/20210307100251.22538-2-viacheslavo@nvidia.com/#128900
+Patch that explains various timestamp formats and how to configure them on queues
 
