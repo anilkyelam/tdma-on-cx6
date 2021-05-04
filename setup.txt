@@ -68,7 +68,8 @@ sudo apt-get install libpcap-dev libnuma-dev
 sudo apt install lua5.3
 git clone https://github.com/pktgen/Pktgen-DPDK
 make
-make buildlua
+or, make buildtdma
+or, make buildlua
 
 sudo ./Builddir/app/pktgen -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500,txq_inline=256,txqs_min_inline=4  -- -m "[2:4].0" -T 
 # sudo ./build/app/dpdk-testpmd -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500  -- -i --nb-cores=2 --txq=2 --rxq=2
