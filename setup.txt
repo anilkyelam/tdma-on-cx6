@@ -75,7 +75,7 @@ sudo ./Builddir/app/pktgen -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500,txq_inline=
 # sudo ./build/app/dpdk-testpmd -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500  -- -i --nb-cores=2 --txq=2 --rxq=2
 
 
-####### Packet Pacing #########
+####### Packet Pacing Setup #########
 https://doc.dpdk.org/guides/nics/mlx5.html
 https://github.com/DPDK/dpdk/blob/main/drivers/net/mlx5/mlx5.c
 
@@ -115,12 +115,6 @@ SEND_EN/WAIT operations to provides the requests to the
 CLock Queue in robust way.
 (all this stuff for precise clock synchronization)
 
-
-
-
-
-
-
 Enabling tx_pp flag:  sudo ./build/app/dpdk-testpmd -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500  -- -i --nb-cores=2 --txq=2 --rxq=2
 But I hit this error first: "mlx5_net: WQE rate mode is required for packet pacing"
 With some guidance from https://www.mail-archive.com/users@dpdk.org/msg05378.html, was able to figure out the issue by some serious guesswork:
@@ -130,3 +124,35 @@ sudo mlxconfig -d 0000:3b:00.0  set REAL_TIME_CLOCK_ENABLE=1    (and reboot)
 http://patches.dpdk.org/project/dpdk/patch/20210307100251.22538-2-viacheslavo@nvidia.com/#128900
 Patch that explains various timestamp formats and how to configure them on queues
 
+
+####### Latency experiments #########
+
+Pktgen:
+make buildtdma 
+sudo ./Builddir/app/pktgen -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500  -- -m "[2:4].0" -T -f ../lua/yeti-00-init.lua  -G
+sudo ./Builddir/app/pktgen -l 0,2,4,8 -n 4 -a 0000:3b:00.0,tx_pp=500  -- -m "[2:4].0" -T -f ../lua/yeti-01-init.lua  -G
+bash latexp.sh
+
+Adjusted latencies:
+cat latencies.dat | \
+    awk '{ if (NR == 1) { printf "%s,%s\n",$1,"Interval"; } else { printf "%lu,%lu\n",$1,$1-last; last=$1; } }' \
+    > data/int_txpp_1mus_burst_1_simple.dat
+
+Latency plots:
+python plot.py -z cdf -yc "Latency" -xl "Latency (micro-sec)" \
+    -d data/lat_notxpp_burst_1_poisson.dat -l "poisson" \
+    -d data/lat_notxpp_burst_1_simple.dat -l "simple" \
+    -nm --xmax 5000 -of png -o plots/latencies_no_txpp.png
+    
+    -d data/lat_notxpp_burst_32_poisson.dat -l "32,poisson" \
+    -d data/lat_notxpp_burst_32_simple.dat -l "32,simple"  \
+
+python plot.py -z cdf -xl "Delay (micro sec)" \
+    -dyc data/lat_txpp_1mus_burst_1_simple_head_250.dat  "Latency" -l "1 mus pacing"     \
+    -dyc data/lat_txpp_10mus_burst_1_simple_head_250.dat "Latency" -l "10 mus pacing"    \
+    -nm --xmax 4000 -of png -o plots/latencies_txpp.png
+
+python plot.py -z cdf -xl "Interval (micro sec)" \
+    -dyc data/int_txpp_1mus_burst_1_simple_head_250.dat  "Interval" -l "1 mus pacing"     \
+    -dyc data/int_txpp_10mus_burst_1_simple_head_250.dat "Interval" -l "10 mus pacing"    \
+    -nm  -of png -o plots/interval_txpp.png
